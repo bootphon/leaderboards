@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.datatables.net/2.3.4/js/dataTables.min.js"></script>
+<head>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.4/css/dataTables.dataTables.min.css">
+</head>
+<body>
+    <h1> Zrc_prosaudit </h1>
+    <div> 
+        <style>
+    .center-label {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    table.dataTable thead .sorting {
+        background-image: url("/img/tables/sort_both.png");
+    }
+
+    table.dataTable thead .sorting_asc {
+        background-image: url("/img/tables/sort_asc.png");
+    }
+
+    table.dataTable thead .sorting_desc {
+        background-image: url("/img/tables/sort_desc.png");
+    }
+
+    table.dataTable thead .sorting_asc_disabled {
+        background-image: url("/img/tables/sort_asc_disabled.png");
+    }
+
+    table.dataTable thead .sorting_desc_disabled {
+        background-image: url("/img/tables/sort_desc_disabled.png");
+    }
+
+    td.details-control {
+        background: url('/img/tables/details_open.png') no-repeat center center;
+        cursor: pointer;
+    }
+
+    tr.shown td.details-control {
+        background: url('/img/tables/details_close.png') no-repeat center center;
+    }
+
+    .rborder {
+        border-right:1px solid #111
+    }
+
+    .dot-rborder {
+        border-right: 1px dotted #111;
+    }
+
+    .lborder {
+        border-left:1px solid #111
+    }
+
+    .tborder {
+        border-top:1px solid #111
+    }
+
+    .bborder {
+        border-bottom: 1px solid #111;
+    }
+
+    .tabletop-border th {
+        border-top:1px solid #111;
+    }
+
+    .tablebottom-border th {
+        border-bottom:1px solid #111;
+    }
+</style>
+
+<table id="zrc_prosaudit" class="display compact" style="width:100%">
+    <thead>
+    <tr class="tabletop-border">
+        <th class="lborder"> &#35; </th>    <!-- 0  -->
+        <th></th>                           <!-- 1  -->
+        <th>Author</th>                     <!-- 2  -->
+        <th>Model ID</th>                   <!-- 3  -->
+        <th>Budget</th>                     <!-- 4  -->
+        <th class="rborder">Set</th>        <!-- 5  -->
+        <th class="center-label rborder"> protosyntax </th>
+        <th class="center-label rborder"> lexical </th>
+    </tr>
+    </thead>
+    <tbody>
+        
+            <tr>
+                <td class="lborder dt-center"> 0 </td>
+                <td class="details-control"></td>
+                <td class="dt-center"> GSLM </td>
+                <td class="dt-center"> gslm23a </td>
+                <td class="rborder dt-center"> - </td>
+                <td class="dt-center"> dev <br> test </td>
+                <!-- Scores -->
+                <td class="dt-center"> 
+                    0.5878 <br>
+                    0.5813
+                </td>
+                <td class="dt-center"> 
+                    0.5328 <br>
+                    0.5412
+                </td>
+            </tr>
+        
+            <tr>
+                <td class="lborder dt-center"> 1 </td>
+                <td class="details-control"></td>
+                <td class="dt-center"> GSLM deduplicated </td>
+                <td class="dt-center"> gslm23b </td>
+                <td class="rborder dt-center"> - </td>
+                <td class="dt-center"> dev <br> test </td>
+                <!-- Scores -->
+                <td class="dt-center"> 
+                    0.6718 <br>
+                    0.6645
+                </td>
+                <td class="dt-center"> 
+                    0.7375 <br>
+                    0.7052
+                </td>
+            </tr>
+        
+            <tr>
+                <td class="lborder dt-center"> 2 </td>
+                <td class="details-control"></td>
+                <td class="dt-center"> pGSLM continuous </td>
+                <td class="dt-center"> gslm23c </td>
+                <td class="rborder dt-center"> - </td>
+                <td class="dt-center"> dev <br> test </td>
+                <!-- Scores -->
+                <td class="dt-center"> 
+                    0.6565 <br>
+                    0.6679
+                </td>
+                <td class="dt-center"> 
+                    0.7375 <br>
+                    0.715
+                </td>
+            </tr>
+        
+            <tr>
+                <td class="lborder dt-center"> 3 </td>
+                <td class="details-control"></td>
+                <td class="dt-center"> pGSLM continuous + prosodic shift </td>
+                <td class="dt-center"> gslm23d </td>
+                <td class="rborder dt-center"> - </td>
+                <td class="dt-center"> dev <br> test </td>
+                <!-- Scores -->
+                <td class="dt-center"> 
+                    0.6908 <br>
+                    0.6675
+                </td>
+                <td class="dt-center"> 
+                    0.749 <br>
+                    0.7189
+                </td>
+            </tr>
+        
+            <tr>
+                <td class="lborder dt-center"> 4 </td>
+                <td class="details-control"></td>
+                <td class="dt-center"> pGSLM discrete </td>
+                <td class="dt-center"> gslm23e </td>
+                <td class="rborder dt-center"> - </td>
+                <td class="dt-center"> dev <br> test </td>
+                <!-- Scores -->
+                <td class="dt-center"> 
+                    0.6756 <br>
+                    0.6476
+                </td>
+                <td class="dt-center"> 
+                    0.7452 <br>
+                    0.7107
+                </td>
+            </tr>
+        
+            <tr>
+                <td class="lborder dt-center"> 5 </td>
+                <td class="details-control"></td>
+                <td class="dt-center"> pGSLM discrete + prosodic shift </td>
+                <td class="dt-center"> gslm23f </td>
+                <td class="rborder dt-center"> - </td>
+                <td class="dt-center"> dev <br> test </td>
+                <!-- Scores -->
+                <td class="dt-center"> 
+                    0.6908 <br>
+                    0.6594
+                </td>
+                <td class="dt-center"> 
+                    0.7259 <br>
+                    0.7288
+                </td>
+            </tr>
+        
+            <tr>
+                <td class="lborder dt-center"> 6 </td>
+                <td class="details-control"></td>
+                <td class="dt-center"> STELA </td>
+                <td class="dt-center"> gslm23g </td>
+                <td class="rborder dt-center"> 60 </td>
+                <td class="dt-center"> dev <br> test </td>
+                <!-- Scores -->
+                <td class="dt-center"> 
+                    0.7252 <br>
+                    0.7486
+                </td>
+                <td class="dt-center"> 
+                    0.6873 <br>
+                    0.6828
+                </td>
+            </tr>
+        
+            <tr>
+                <td class="lborder dt-center"> 7 </td>
+                <td class="details-control"></td>
+                <td class="dt-center"> STELA dedup </td>
+                <td class="dt-center"> gslm23h </td>
+                <td class="rborder dt-center"> 60 </td>
+                <td class="dt-center"> dev <br> test </td>
+                <!-- Scores -->
+                <td class="dt-center"> 
+                    0.5802 <br>
+                    0.5851
+                </td>
+                <td class="dt-center"> 
+                    0.4865 <br>
+                    0.467
+                </td>
+            </tr>
+        
+    </tbody>
+</table>
+
+
+
+<script type="module">
+    new DataTable("#zrc_prosaudit", {
+        paging: false,
+        searching: false,
+        info: false,
+        layout: {
+            bottomStart: null,
+            topStart: null
+        }
+    });
+</script> 
+    </div>
+</body>
+</html>

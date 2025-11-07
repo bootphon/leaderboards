@@ -1,0 +1,54 @@
+{
+    "model_id": "gslm23h",
+    "submission_id": "STELA_EN_3200_dedup",
+    "index": 7,
+    "submission_date": "2023-02-24T14:03:42.612164",
+    "submitted_by": "admin",
+    "description": "CPC + Kmeans50 (deduplicated) + LSTM.\nRefer to de Seyssel et al (2023) for more details. \n",
+    "publication": {
+        "author_short": "STELA dedup",
+        "authors": "Maureen de Seyssel, Andrea Santos, Marvin Lavechin, Hadrien Titeux, Gwendal Virlet, Arthur Thomas, Guillaume Wisniewski, Bogdan Ludusan, Emmanuel Dupoux",
+        "paper_title": "ProsAudit, a prosodic benchmark for self-supervised speech models",
+        "paper_ref": "https://arxiv.org/abs/2302.12057",
+        "bib_ref": null,
+        "paper_url": "https://arxiv.org/abs/2302.12057",
+        "pub_year": 2023,
+        "team_name": "CoML Team",
+        "institution": "EHESS, ENS, PSL Research Univerity, CNRS and Inria",
+        "code": null,
+        "DOI": null,
+        "open_science": true
+    },
+    "details": {
+        "train_set": "English Audiobooks 3200h",
+        "gpu_budget": "60",
+        "parameters": {}
+    },
+    "scores": {
+        "protosyntax": {
+            "dev": {
+                "score": 0.5802,
+                "n": 262,
+                "std": 0.4945
+            },
+            "test": {
+                "score": 0.5851,
+                "n": 2355,
+                "std": 0.4928
+            }
+        },
+        "lexical": {
+            "dev": {
+                "score": 0.4865,
+                "n": 259,
+                "std": 0.5008
+            },
+            "test": {
+                "score": 0.467,
+                "n": 2330,
+                "std": 0.499
+            }
+        }
+    },
+    "extras": null
+}

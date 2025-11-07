@@ -1,0 +1,28 @@
+# {{ leaderboad_name }} | {{ entry.publication.author_short }}
+
+Entry for the {{ leaderboad_name }}, by {{ entry.publication.authors }}.
+
+
+## Description
+
+{{ entry.description }}
+
+
+{% if entry.publication.code %}
+The code for our entry can be found using [this url]({{ entry.publication.code }})
+{% endif %}
+
+
+## Citation
+
+{% if entry.publication.paper_ref %}
+You can read the relevant [paper]({{ entry.publication.paper_ref }})
+{% endif %}
+
+{% if entry.publication.bib_ref %}
+You can cite our entry using the following code :
+
+```
+{{ entry.publication.bib_ref }}
+```
+{% endif %}

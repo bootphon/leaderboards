@@ -1,0 +1,113 @@
+<style>
+    .center-label {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    table.dataTable thead .sorting {
+        background-image: url("/img/tables/sort_both.png");
+    }
+
+    table.dataTable thead .sorting_asc {
+        background-image: url("/img/tables/sort_asc.png");
+    }
+
+    table.dataTable thead .sorting_desc {
+        background-image: url("/img/tables/sort_desc.png");
+    }
+
+    table.dataTable thead .sorting_asc_disabled {
+        background-image: url("/img/tables/sort_asc_disabled.png");
+    }
+
+    table.dataTable thead .sorting_desc_disabled {
+        background-image: url("/img/tables/sort_desc_disabled.png");
+    }
+
+    td.details-control {
+        background: url('/img/tables/details_open.png') no-repeat center center;
+        cursor: pointer;
+    }
+
+    tr.shown td.details-control {
+        background: url('/img/tables/details_close.png') no-repeat center center;
+    }
+
+    .rborder {
+        border-right:1px solid #111
+    }
+
+    .dot-rborder {
+        border-right: 1px dotted #111;
+    }
+
+    .lborder {
+        border-left:1px solid #111
+    }
+
+    .tborder {
+        border-top:1px solid #111
+    }
+
+    .bborder {
+        border-bottom: 1px solid #111;
+    }
+
+    .tabletop-border th {
+        border-top:1px solid #111;
+    }
+
+    .tablebottom-border th {
+        border-bottom:1px solid #111;
+    }
+</style>
+
+<table id="{{ tableID }}" class="display compact" style="width:100%">
+    <thead>
+    <tr class="tabletop-border">
+        <th class="lborder"> &#35; </th>    <!-- 0  -->
+        <th></th>                           <!-- 1  -->
+        <th>Author</th>                     <!-- 2  -->
+        <th>Model ID</th>                   <!-- 3  -->
+        <th>Budget</th>                     <!-- 4  -->
+        <th class="rborder">Set</th>        <!-- 5  -->
+        <th class="center-label rborder"> protosyntax </th>
+        <th class="center-label rborder"> lexical </th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for entry in leaderboard.data %}
+            <tr>
+                <td class="lborder dt-center"> {{ entry.index }} </td>
+                <td class="details-control"></td>
+                <td class="dt-center"> {{ entry.publication.author_short }} </td>
+                <td class="dt-center"> {{ entry.model_id }} </td>
+                <td class="rborder dt-center"> {{ entry.details.gpu_budget }} </td>
+                <td class="dt-center"> dev <br> test </td>
+                <!-- Scores -->
+                <td class="dt-center"> 
+                    {{ entry.scores.protosyntax["dev"].score }} <br>
+                    {{ entry.scores.protosyntax["test"].score }}
+                </td>
+                <td class="dt-center"> 
+                    {{ entry.scores.lexical["dev"].score }} <br>
+                    {{ entry.scores.lexical["test"].score }}
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+
+<script type="module">
+    new DataTable("#{{ tableID }}", {
+        paging: false,
+        searching: false,
+        info: false,
+        layout: {
+            bottomStart: null,
+            topStart: null
+        }
+    });
+</script>

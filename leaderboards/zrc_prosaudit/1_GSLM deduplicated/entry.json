@@ -1,0 +1,54 @@
+{
+    "model_id": "gslm23b",
+    "submission_id": "GSLM_dedup",
+    "index": 1,
+    "submission_date": "2023-02-24T14:03:41.784490",
+    "submitted_by": "admin",
+    "description": "HuBert + Kmeans (deduplicated) + Transformer. \nRefer to de Seyssel et al (2023) for more details.\nModel used from : K. Lakhotia, E. Kharitonov, W.-N. Hsu, Y. Adi, A. Polyak, B. Bolte, T.-A. Nguyen, J. Copet, A. Baevski, A. Mohamed et al., \n\u201cOn generative spoken language modeling from raw audio,\u201d Transactions of the Association for Computational Linguistics, vol. 9, pp. 1336\u20131354, 2021\n",
+    "publication": {
+        "author_short": "GSLM deduplicated",
+        "authors": "Maureen de Seyssel, Andrea Santos, Marvin Lavechin, Hadrien Titeux, Gwendal Virlet, Arthur Thomas, Guillaume Wisniewski, Bogdan Ludusan, Emmanuel Dupoux",
+        "paper_title": "ProsAudit, a prosodic benchmark for self-supervised speech models",
+        "paper_ref": "https://arxiv.org/abs/2302.12057",
+        "bib_ref": null,
+        "paper_url": "https://arxiv.org/abs/2302.12057",
+        "pub_year": 2023,
+        "team_name": "CoML Team",
+        "institution": "EHESS, ENS, PSL Research Univerity, CNRS and Inria",
+        "code": null,
+        "DOI": null,
+        "open_science": true
+    },
+    "details": {
+        "train_set": "LibriLight clean 6k",
+        "gpu_budget": "-",
+        "parameters": {}
+    },
+    "scores": {
+        "protosyntax": {
+            "dev": {
+                "score": 0.6718,
+                "n": 262,
+                "std": 0.4705
+            },
+            "test": {
+                "score": 0.6645,
+                "n": 2355,
+                "std": 0.4723
+            }
+        },
+        "lexical": {
+            "dev": {
+                "score": 0.7375,
+                "n": 259,
+                "std": 0.4409
+            },
+            "test": {
+                "score": 0.7052,
+                "n": 2330,
+                "std": 0.4561
+            }
+        }
+    },
+    "extras": null
+}

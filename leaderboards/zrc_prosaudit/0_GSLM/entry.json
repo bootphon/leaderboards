@@ -1,0 +1,54 @@
+{
+    "model_id": "gslm23a",
+    "submission_id": "GSLM",
+    "index": 0,
+    "submission_date": "2023-02-24T14:03:41.697021",
+    "submitted_by": "admin",
+    "description": "HuBert + Kmeans + Transformer. \nRefer to de Seyssel et al (2023) for more details. \nModel used from : K. Lakhotia, E. Kharitonov, W.-N. Hsu, Y. Adi, A. Polyak, B. Bolte, T.-A. Nguyen, J. Copet, A. Baevski, A. Mohamed et al., \n\u201cOn generative spoken language modeling from raw audio,\u201d Transactions of the Association for Computational Linguistics, vol. 9, pp. 1336\u20131354, 2021\"\n",
+    "publication": {
+        "author_short": "GSLM",
+        "authors": "Maureen de Seyssel, Andrea Santos, Marvin Lavechin, Hadrien Titeux, Gwendal Virlet, Arthur Thomas, Guillaume Wisniewski, Bogdan Ludusan, Emmanuel Dupoux",
+        "paper_title": "ProsAudit, a prosodic benchmark for self-supervised speech models",
+        "paper_ref": "https://arxiv.org/abs/2302.12057",
+        "bib_ref": null,
+        "paper_url": "https://arxiv.org/abs/2302.12057",
+        "pub_year": 2023,
+        "team_name": "CoML Team",
+        "institution": "EHESS, ENS, PSL Research Univerity, CNRS and Inria",
+        "code": null,
+        "DOI": null,
+        "open_science": true
+    },
+    "details": {
+        "train_set": "LibriLight clean 6k",
+        "gpu_budget": "-",
+        "parameters": {}
+    },
+    "scores": {
+        "protosyntax": {
+            "dev": {
+                "score": 0.5878,
+                "n": 262,
+                "std": 0.4932
+            },
+            "test": {
+                "score": 0.5813,
+                "n": 2355,
+                "std": 0.4934
+            }
+        },
+        "lexical": {
+            "dev": {
+                "score": 0.5328,
+                "n": 259,
+                "std": 0.4999
+            },
+            "test": {
+                "score": 0.5412,
+                "n": 2330,
+                "std": 0.4984
+            }
+        }
+    },
+    "extras": null
+}
