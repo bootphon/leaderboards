@@ -1,113 +1,54 @@
-<style>
-    .center-label {
-        text-align: center;
-        vertical-align: middle;
-    }
-
-    table.dataTable thead .sorting {
-        background-image: url("/img/tables/sort_both.png");
-    }
-
-    table.dataTable thead .sorting_asc {
-        background-image: url("/img/tables/sort_asc.png");
-    }
-
-    table.dataTable thead .sorting_desc {
-        background-image: url("/img/tables/sort_desc.png");
-    }
-
-    table.dataTable thead .sorting_asc_disabled {
-        background-image: url("/img/tables/sort_asc_disabled.png");
-    }
-
-    table.dataTable thead .sorting_desc_disabled {
-        background-image: url("/img/tables/sort_desc_disabled.png");
-    }
-
-    td.details-control {
-        background: url('/img/tables/details_open.png') no-repeat center center;
-        cursor: pointer;
-    }
-
-    tr.shown td.details-control {
-        background: url('/img/tables/details_close.png') no-repeat center center;
-    }
-
-    .rborder {
-        border-right:1px solid #111
-    }
-
-    .dot-rborder {
-        border-right: 1px dotted #111;
-    }
-
-    .lborder {
-        border-left:1px solid #111
-    }
-
-    .tborder {
-        border-top:1px solid #111
-    }
-
-    .bborder {
-        border-bottom: 1px solid #111;
-    }
-
-    .tabletop-border th {
-        border-top:1px solid #111;
-    }
-
-    .tablebottom-border th {
-        border-bottom:1px solid #111;
-    }
-</style>
-
-<table id="{{ tableID }}" class="display compact" style="width:100%">
-    <thead>
+{% extends "base.leaderboad.html.jinja2" %}
+{% block table_data %}
+<thead>
     <tr class="tabletop-border">
-        <th class="lborder"> &#35; </th>    <!-- 0  -->
-        <th></th>                           <!-- 1  -->
-        <th>Author</th>                     <!-- 2  -->
-        <th>Model ID</th>                   <!-- 3  -->
-        <th>Budget</th>                     <!-- 4  -->
-        <th class="rborder">Set</th>        <!-- 5  -->
-        <th class="center-label rborder"> protosyntax </th>
-        <th class="center-label rborder"> lexical </th>
-    </tr>
-    </thead>
-    <tbody>
-        {% for entry in leaderboard.data %}
-            <tr>
-                <td class="lborder dt-center"> {{ entry.index }} </td>
-                <td class="details-control"></td>
-                <td class="dt-center"> {{ entry.publication.author_short }} </td>
-                <td class="dt-center"> {{ entry.model_id }} </td>
-                <td class="rborder dt-center"> {{ entry.details.gpu_budget }} </td>
-                <td class="dt-center"> dev <br> test </td>
-                <!-- Scores -->
-                <td class="dt-center"> 
-                    {{ entry.scores.protosyntax["dev"].score }} <br>
-                    {{ entry.scores.protosyntax["test"].score }}
-                </td>
-                <td class="dt-center"> 
-                    {{ entry.scores.lexical["dev"].score }} <br>
-                    {{ entry.scores.lexical["test"].score }}
-                </td>
-            </tr>
-        {% endfor %}
-    </tbody>
-</table>
+    <th class="lborder dt-center">#</th>
+    <th class="dt-center rborder"></th>
+    <th class="dt-center">Author</th>
+    <th class="dt-center">Model ID</th>
+    <th class="dt-center">Budget</th>
+    <th class="rborder dt-center">Set</th>
+    <th class="center-label rborder">protosyntax</th>
+    <th class="center-label rborder">lexical</th>
+</tr>
+</thead>
+<tbody>
+    {% for entry in leaderboard.data %}
+        <tr data-entry-index="{{ entry.index }}">
+            <td class="lborder dt-center"> {{ entry.index }} </td>
+            <td class="details-control rboder">
+                <!-- Hidden details div inside the cell -->
+                <div class="hidden-details" style="display: none;">
+                    <div style="padding: 20px; background-color: #f9f9f9;">
+                        <strong>Model Details:</strong> {{ entry.publication.author_short }} <br>
+                        <strong>Author:</strong> {{ entry.publication.authors }}<br>
+                        <strong>Publication Title:</strong> {{ entry.publication.paper_title }}<br>
+                        <strong>Paper URL:</strong> {{ entry.publication.paper_url }}<br>
+                        <!-- Add any other details from your entry object -->
+                        {% if entry.description %}
+                            <strong>Description:</strong> {{ entry.description }}<br>
+                        {% endif %}
+                        {% if entry.publication.institution %}
+                            <strong> Institution: </strong> {{ entry.publication.institution }}<br>
+                        {% endif %}
+                    </div>
+                </div>
+            </td>
+            <td class="dt-center"> {{ entry.publication.author_short }} </td>
+            <td class="dt-center"> {{ entry.model_id }} </td>
+            <td class="dt-center"> {{ entry.details.gpu_budget }} </td>
+            <td class="rborder dt-center">dev<br>test</td>
+            <!-- Scores -->
+            <td class="rborder dt-center"> 
+                {{ entry.scores.protosyntax["dev"].score }} <br>
+                {{ entry.scores.protosyntax["test"].score }}
+            </td>
+            <td class="rborder dt-center"> 
+                {{ entry.scores.lexical["dev"].score }} <br>
+                {{ entry.scores.lexical["test"].score }}
+            </td>
+        </tr>
+    {% endfor %}
+</tbody>
+{% endblock %}
 
-
-
-<script type="module">
-    new DataTable("#{{ tableID }}", {
-        paging: false,
-        searching: false,
-        info: false,
-        layout: {
-            bottomStart: null,
-            topStart: null
-        }
-    });
-</script>
