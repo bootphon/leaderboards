@@ -1,0 +1,45 @@
+on:
+  workflow_dispatch:
+
+name: Build and Commit Static Files
+jobs:
+  build-and-commit:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/astral-sh/uv:latest
+    steps:
+    # Checkout code
+    - uses: actions/checkout@v4
+
+    # Run make commands using uv
+    - name: Build static files
+      run: |
+        make zrc_prosaudit
+        # Add new leaderboards here
+
+    - name: Check for Changes in static/
+      id: check_changes
+      run: |
+        if [[ -n "$(git diff --exit-code static/)" ]]; then
+          echo "Changes detected in static/ folder."
+          echo "has_changes=true" >> $GITHUB_OUTPUT
+        else
+          echo "No changes detected in static/ folder."
+          echo "has_changes=false" >> $GITHUB_OUTPUT
+        fi
+
+    - name: Commit and Push Changes
+      if: steps.check_changes.outputs.has_changes == 'true'
+      run: |
+        # configure user
+        git config --global user.name "${{ github.actor }}"
+        git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+
+        # stage only the static/ folder
+        git add static/
+
+        # make commit with staged changes
+        git commit -m 'Update static files'
+
+        # push the commit back up to source GitHub repository
+        git push
