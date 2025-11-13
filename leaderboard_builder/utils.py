@@ -5,7 +5,7 @@ import warnings
 from importlib.resources import files
 from pathlib import Path
 
-from jinja2 import Environment, FileSystemLoader, Template
+from jinja2 import Environment, FileSystemLoader, Template, TemplateNotFound
 
 from .modeling import Leaderboard, LeaderboardEntry
 
@@ -39,11 +39,21 @@ def get_preview() -> Template:
     )
 
 
-def load_template(name: LeaderboardNames) -> Template:
-    """Load jinja2 template."""
+def load_table_template(name: LeaderboardNames) -> Template:
+    """Load jinja2 html template."""
     return Environment(loader=FileSystemLoader(get_template_dir())).get_template(
         f"{name.value}.html.jinja2"
     )
+
+
+def load_javascript_template(name: LeaderboardNames) -> Template:
+    """Load javascript file for a given leaderboard."""
+    tmpl_env = Environment(loader=FileSystemLoader(get_template_dir()))
+    try:
+        return tmpl_env.get_template(f"{name.value}.js.jinja2")
+    except TemplateNotFound:
+        # If no override return base
+        return tmpl_env.get_template("base.leaderboard.js.jinja2")
 
 
 def get_leaderboard_type(name: LeaderboardNames) -> t.Type[Leaderboard]:

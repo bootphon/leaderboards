@@ -1,0 +1,35 @@
+{% block js_functions %}
+
+{% endblock %}
+
+
+$(document).ready(function() {
+    {% block table_init %}
+        var table = new DataTable("#{{ tableID }}", {
+            paging: false,
+            searching: false,
+            info: false,
+            ordering: false,
+            layout: {
+                bottomStart: null,
+                topStart: null
+            },
+        });
+    {% endblock %}
+
+    // Add event listener for opening and closing details
+    $('#{{ tableID }} tbody').on('click', 'td.details-control', function() {
+        var tr = $(this).closest('tr');
+        var row = table.row(tr);
+        var detailsContent = $(this).find('.hidden-details').html();
+        if (row.child.isShown()) {
+            // Close the details
+            row.child.hide();
+            tr.removeClass('shown');
+        } else {
+            // Open the details
+            row.child(detailsContent).show();
+            tr.addClass('shown');
+        }
+    });
+});

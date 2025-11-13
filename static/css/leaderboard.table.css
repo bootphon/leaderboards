@@ -1,0 +1,107 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+.center-label {
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Custom borders */
+.lborder {
+    border-left: 1px solid #111;
+}
+
+.rborder {
+    border-right: 1px solid #111;
+}
+
+.tabletop-border th {
+    border-top: 1px solid #111;
+}
+
+/* Fix cell alignment */
+table.dataTable tbody td {
+    vertical-align: middle;
+}
+
+table.dataTable thead th {
+    vertical-align: middle;
+    text-align: center;
+}
+
+/* Sorting icon styling */
+table.dataTable thead .sorting {
+    background-image: url("/img/tables/sort_both.png");
+}
+
+table.dataTable thead .sorting_asc {
+    background-image: url("/img/tables/sort_asc.png");
+}
+
+table.dataTable thead .sorting_desc {
+    background-image: url("/img/tables/sort_desc.png");
+}
+
+table.dataTable thead .sorting_asc_disabled {
+    background-image: url("/img/tables/sort_asc_disabled.png");
+}
+
+table.dataTable thead .sorting_desc_disabled {
+    background-image: url("/img/tables/sort_desc_disabled.png");
+}
+
+/* Details control styling - CSS-based arrows */
+td.details-control {
+    cursor: pointer;
+    width: 30px;
+    text-align: center;
+    position: relative;
+    border-right: 1px solid #111;
+}
+
+/* Plus icon for closed state */
+td.details-control:before {
+    content: '+';
+    font-size: 18px;
+    font-weight: bold;
+    color: #0066cc;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    border: 2px solid #0066cc;
+    border-radius: 3px;
+    background-color: #f9f9f9;
+}
+
+/* Minus icon for open state */
+tr.shown td.details-control:before {
+    content: '-';
+}
+
+td.details-control:hover:before {
+    background-color: #e6f2ff;
+}
+
+/* Fix text alignment */
+.dt-center {
+    text-align: center !important;
+}
+
+/* Better spacing for multi-line cells */
+table.dataTable tbody td br {
+    line-height: 1.8;
+}
+
+/* Remove default DataTables padding that might cause misalignment */
+table.dataTable.compact thead th,
+table.dataTable.compact tbody td {
+    padding: 8px;
+}

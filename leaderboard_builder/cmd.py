@@ -3,7 +3,13 @@ from pathlib import Path
 
 import clypi
 
-from .utils import LeaderboardNames, get_preview, load_data, load_template
+from .utils import (
+    LeaderboardNames,
+    get_preview,
+    load_data,
+    load_javascript_template,
+    load_table_template,
+)
 
 
 class MakeHtml(clypi.Command):
@@ -15,20 +21,31 @@ class MakeHtml(clypi.Command):
     force_update: bool = clypi.arg(inherited=True)
 
     def build(self, name: LeaderboardNames) -> None:
-        """Build Table from HTML template."""
-        snippet_tmpl = load_template(name)
+        """Build Table from HTML template.
+
+        TODO: split HTML & Javascript code as it makes better for importing into mkdocs
+        """
+
+        snippet_tmpl = load_table_template(name)
         preview_tmpl = get_preview()
+        js_tmpl = load_javascript_template(name)
         ld_data = load_data(
             name=self.name,
             data_dir=self.source_dir,
             force_update=self.force_update,
         )
         tableHTML = snippet_tmpl.render(leaderboard=ld_data, tableID=f"{name.value}")
+        js_script = js_tmpl.render(leaderboard=ld_data, tableID=f"{name.value}")
 
+        # Write HTML snippet
         (self.target_dir / "snippets").mkdir(exist_ok=True, parents=True)
         (self.target_dir / "snippets" / f"{name.value}.html").write_text(tableHTML)
 
-        # Make preview
+        # Write JS
+        (self.target_dir / "js").mkdir(exist_ok=True, parents=True)
+        (self.target_dir / "js" / f"{name.value}.js").write_text(js_script)
+
+        # Write HTML preview
         (self.target_dir / "preview").mkdir(exist_ok=True, parents=True)
         (self.target_dir / "preview" / f"{name.value}.html").write_text(
             preview_tmpl.render(name=self.name.value.capitalize(), tableHTML=tableHTML)
