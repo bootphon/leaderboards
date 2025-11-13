@@ -6,7 +6,7 @@ LEADERBOARD_NAMES := zrc_prosaudit
 ################################################################################################
 # FILES
 JS_FILES := $(addprefix static/js/, $(addsuffix .js, $(LEADERBOARD_NAMES)))
-PREVIEW_FILES := $(addprefix static/preview/, $(addsuffix .html, $(NALEADERBOARD_NAMESMES)))
+PREVIEW_FILES := $(addprefix static/preview/, $(addsuffix .html, $(LEADERBOARD_NAMES)))
 SNIPPET_FILES := $(addprefix static/snippet/, $(addsuffix .html, $(LEADERBOARD_NAMES)))
 STAMPS := $(addprefix .stamps/, $(addsuffix .stamp, $(LEADERBOARD_NAMES)))
 # LOCATIONS
@@ -155,3 +155,9 @@ static/snippet/%.html: .stamps/%.stamp
 .stamps:
 	@mkdir -p .stamps
 
+
+.PHONY: clean
+clean:
+	rm -f $(JS_FILES)
+	rm -f $(PREVIEW_FILES)
+	rm -f $(SNIPPET_FILES)
