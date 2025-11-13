@@ -11,6 +11,14 @@ jobs:
     # Checkout code
     - uses: actions/checkout@v4
 
+     # Install uv
+    - name: Install uv
+      run: curl -LsSf https://astral.sh/uv/install.sh | sh
+
+    # Add uv to PATH
+    - name: Add uv to PATH
+      run: echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+
     # Run make commands using uv
     - name: Build static files
       run: |
