@@ -7,7 +7,7 @@ LEADERBOARD_NAMES := zrc_prosaudit
 # FILES
 JS_FILES := $(addprefix static/js/, $(addsuffix .js, $(LEADERBOARD_NAMES)))
 PREVIEW_FILES := $(addprefix static/preview/, $(addsuffix .html, $(LEADERBOARD_NAMES)))
-SNIPPET_FILES := $(addprefix static/snippet/, $(addsuffix .html, $(LEADERBOARD_NAMES)))
+SNIPPET_FILES := $(addprefix static/snippets/, $(addsuffix .html, $(LEADERBOARD_NAMES)))
 STAMPS := $(addprefix .stamps/, $(addsuffix .stamp, $(LEADERBOARD_NAMES)))
 # LOCATIONS
 VENV_DIR := .venv
